@@ -81,6 +81,8 @@ SITE_ID = 1
 
 WSGI_APPLICATION = 'foodtasker.wsgi.application'
 
+ALLOWED_HOSTS = ['127.0.0.1', 'foodrestaurantapp.herokuapp.com']
+
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
