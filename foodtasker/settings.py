@@ -92,15 +92,14 @@ db_config = dj_database_url.config()
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'foodtasker',
-        # # 'DATABASE' : '',
-        # 'USER' : 'postgres',
-        # 'PASSWORD' : 'qwerty123',
-        # 'HOST' : '127.0.0.1',
-        # 'PORT' : '5432'
+        
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'foodtasker',
+        # 'DATABASE' : '',
+        'USER' : 'postgres',
+        'PASSWORD' : 'qwerty123',
+        'HOST' : '127.0.0.1',
+        'PORT' : '5432'
     }
 }
 DATABASES['default'].update(db_config)
