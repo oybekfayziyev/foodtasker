@@ -16,11 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
-from .views import HomeView,RestaurantSignupView
+
+from .views import (       
+    HomeView,
+    RestaurantSignupView,
+    OrderView,
+    MealView,
+    AccountView,
+    ReportView,
+    MySignupView
+)
 
 app_name = 'foodapp'
-urlpatterns = [
- 
+urlpatterns = [ 
     path('', HomeView, name = 'home'),
-    path('restaurant-sign-up/', RestaurantSignupView.as_view(), name = 'restaurant-sign-up')
+    path('restaurant-sign-up/', RestaurantSignupView.as_view(), name = 'restaurant-sign-up'),
+    path('restaurant/account/order/', OrderView.as_view(), name = 'restaurant-order'),
+    path('restaurant/account/meal', MealView.as_view(), name = 'restaurant-meal'),
+    path('restaurant/account/', AccountView.as_view(), name = 'restaurant-account'),
+    path('restaurant/account/report', ReportView.as_view(), name = 'restaurant-report')
 ] 

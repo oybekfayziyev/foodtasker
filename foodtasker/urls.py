@@ -21,5 +21,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('foodapp.urls')),
-    path('accounts/', include('allauth.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('accounts/', include('allauth.urls')),     
+    path('auth/', include('rest_framework_social_oauth2.urls')),
+    
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
