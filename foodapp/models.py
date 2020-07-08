@@ -61,7 +61,7 @@ class Order(models.Model):
     address = models.CharField(max_length=40)
     total = models.FloatField()
     status = models.IntegerField(choices = STATUS_CHOICES)
-    created_at = models.DateTimeField(default = timezone.now())
+    created_at = models.DateTimeField(default = timezone.now)
     picked_up = models.DateTimeField(blank = True, null = True)
 
     def __str__(self):
