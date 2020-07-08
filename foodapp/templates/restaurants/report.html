@@ -5,10 +5,164 @@
 {% block sidebar %}
  {% include 'restaurants/sidebar.html' %}
 {% endblock %}
-
+{% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"> </script>
+{% endblock %}
 {% block heading %}
 {% endblock heading %}
 
-{% block content %}
-    <h1> Working </h1>
+{% block page %}
+    {% comment %} Revenue by Week {% endcomment %}
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel">
+                <div class="panel-heading bg-blue">
+                    <h4 class="panel-title text-center text-white">
+                        Revenue by week
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <canvas id="revenueChart" height="110"> </canvas>   
+                    <script>
+                        var ctx = document.getElementById("revenueChart").getContext("2d");
+                        var data = {
+                            labels: ["Mon", "Tue", "Wed","Thu","Fri","Sat", "Sun"],
+                            datasets : [
+                                {
+                                    label : "Revenue by week",
+                                    backgroundColor: "rgba(54,162,235,0.9)",
+                                    hoverBackgroundColor : "rgba(54,162,235,0.9)",
+                                    data : {{revenue}}
+                                }                            
+                            ] 
+                        }   
+                        new Chart(ctx,{
+                            type : 'bar',
+                            data : data
+                        });
+                    </script> 
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+            {% comment %} Top 3 MEALS {% endcomment %}
+            <div class="panel">
+                <div class="panel-heading bg-blue">
+                    <h4 class="panel-title text-center text-white">
+                        Top 3 Meals
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <canvas id="mealChart" height="220"> </canvas>   
+                    <script>
+                        var ctx = document.getElementById("mealChart").getContext("2d");
+                        var data = {
+                            labels: {{meal.labels|safe}},
+                            datasets : [
+                                {
+                                   
+                                    backgroundColor: [
+                                        "#36A2EB","#FFCE56","#FF6384"
+                                    ],
+                                   
+                                    data : {{meal.data}}
+                                }                            
+                            ] 
+                        }   
+                        new Chart(ctx,{
+                            type : 'pie',
+                            data : data
+                        });
+                    </script> 
+                </div>
+            </div>
+
+            {% comment %} TOP 3 DRIVER {% endcomment %}
+
+           
+
+        </div>
+
+        {% comment %} Order by week {% endcomment %}
+        <div class="col-lg-8">
+            <div class="panel">
+                <div class="panel-heading bg-blue">
+                    <h4 class="panel-title text-center text-white">
+                        Order by week
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <canvas id="orderChart" height="110"> </canvas>   
+                    <script>
+                        var ctx = document.getElementById("orderChart").getContext("2d");
+                        var data = {
+                            labels: ["Mon", "Tue", "Wed","Thu","Fri","Sat", "Sun"],
+                            datasets : [
+                                {
+                                    label : "Revenue by week",
+                                    backgroundColor: "#dc3545",
+                                    hoverBackgroundColor : "#dc3545",
+                                    data : {{orders}}
+                                }                            
+                            ] 
+                        }   
+                        new Chart(ctx,{
+                            type : 'bar',
+                            data : data
+                        });
+                    </script> 
+                </div>
+            </div>
+
+        </div>
+
+        {% comment %} Top 3 DRIVER {% endcomment %}
+
+        <div class="col-lg-4">
+            
+            <div class="panel">
+                <div class="panel-heading bg-blue">
+                    <h4 class="panel-title text-center text-white">
+                        Top 3 DRIVER
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <canvas id="driverChart" height="220"> </canvas>   
+                    <script>
+                        var ctx = document.getElementById("driverChart").getContext("2d");
+                        var data = {
+                            labels: {{driver.labels|safe}},
+                            datasets : [
+                                {
+                                   
+                                    backgroundColor: [
+                                        "#36A2EB","#FFCE56","#FF6384"
+                                    ],
+                                   
+                                    data : {{driver.data}}
+                                }                            
+                            ] 
+                        }   
+                        new Chart(ctx,{
+                            type : 'pie',
+                            data : data
+                        });
+                    </script> 
+                </div>
+            </div>
+
+            {% comment %} TOP 3 DRIVER {% endcomment %}
+
+           
+
+        </div>
+        
+      
+        
+
+       
+    </div>
 {% endblock %}
+

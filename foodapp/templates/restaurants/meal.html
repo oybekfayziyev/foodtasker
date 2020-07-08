@@ -10,5 +10,43 @@
 {% endblock heading %}
 
 {% block content %}
-    <h1> Working </h1>
+    <div class="panel">
+        <div class="panel-heading bg-blue">
+            <h4 class="panel-title text-center text-white">
+                Meals
+            </h4>
+        </div>
+        <div class="panel-body">
+            <div class="text-right">
+                <a href="{% url 'foodapp:restaurant-add-meal' %}" class="btn btn-outline-primary">Add Meal</a>
+            </div>
+            <br/>
+            <table class="table table-bordered table-hover table-striped">
+                <thread>
+                    <tr class="bg-gray text-black">
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Short description</th>
+                        <th>Price</th>
+                        <th class="text-center">Image</th>
+                    </tr>
+                </thread>
+                <tbody>
+                    {% for meal in meals %}
+                        <tr>
+                            <th scope="row">{{meal.id}}</th>
+                            <th><a href="{% url 'foodapp:restaurant-edit-meal' meal.id %}">{{meal.name}}</a></th>
+                            <th>{{meal.description}}</th>
+                            <th>{{meal.price}}</th>
+                            <th class="text-center"><img src="{{MEDIA_URL}}{{meal.image}}" class="img-rounded" height="50" width="50"></th>
+                        
+                        </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    
 {% endblock %}

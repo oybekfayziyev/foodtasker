@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'rest_framework_social_oauth2',
     # crispy forms for form design
     'crispy_forms',
+    'bootstrap4',
+    'rest_framework.authtoken',
   
 ]
 
@@ -108,14 +110,16 @@ db_config = dj_database_url.config()
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'foodtasker',
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'foodtasker',
         # 'DATABASE' : '',
-        'USER' : 'postgres',
-        'PASSWORD' : 'qwerty123',
-        'HOST' : '127.0.0.1',
-        'PORT' : '5432'
+        # 'USER' : 'postgres',
+        # 'PASSWORD' : 'qwerty123',
+        # 'HOST' : '127.0.0.1',
+        # 'PORT' : '5432'
     }
 }
 DATABASES['default'].update(db_config)
@@ -165,8 +169,12 @@ ACCOUNT_FORMS = {
     'reset_password_from_key': 'allauth.account.forms.ResetPasswordKeyForm',
     'disconnect': 'allauth.socialaccount.forms.DisconnectForm',
 }
-
-
+# REST FRAMEWORK
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
+}
 
 
 # Internationalization
@@ -205,4 +213,5 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
 )
+CRISPY_TEMPLATE_PACK = 'uni_form'
 

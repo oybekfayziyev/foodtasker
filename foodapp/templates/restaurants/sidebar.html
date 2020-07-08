@@ -1,20 +1,21 @@
 <div class="text-center">
-        <img class="rounded-circle" src="{{ MEDIA_URL }}{{ request.user.restaurant.logo }}" width="70" height="70" class="img-circle">
+    <img class="rounded-circle" src="{{ MEDIA_URL }}{{ request.user.restaurant.logo }}" width="70" height="70" class="img-circle">
         <br/>
         <br/>
         <h4>Hi, {{request.user.get_full_name}}</h4>
         <h5>{{request.user.restaurant.name}} </h5>
     </div>
 
-    <div class="list-group">
+    <div class="list-group">     
         <span class="text-uppercase">Dashboard</span>
-        <a href="{% url 'foodapp:restaurant-order' %}" class="list-group-item"> Order </a>
+        <a href="{% url 'foodapp:restaurant-order' %}" class="list-group-item {% if request.path == '/restaurant/account/order/' %} active {% endif %}"> 
+        Order <span class="badge"></span>
+        </a>        
+        <a href="{% url 'foodapp:restaurant-meal' %}" class="list-group-item {% if request.path == '/restaurant/account/meal' %}active{% endif %}"> Meal </a>
         
-        <a href="{% url 'foodapp:restaurant-meal' %}" class="list-group-item"> Meal </a>
-        
-        <a href="{% url 'foodapp:restaurant-report' %}" class="list-group-item"> Reports </a>
+        <a href="{% url 'foodapp:restaurant-report' %}" class="list-group-item {% if request.path == '/restaurant/account/report' %}active{% endif %}"> Report </a>
         <span class="text-uppercase">Profile</span>
-        <a href="{% url 'foodapp:restaurant-account' %}" class="list-group-item"> Account </a>
+        <a href="{% url 'foodapp:restaurant-account' %}" class="list-group-item {% if request.path == '/restaurant/account/' %}active{% endif %}"> Account </a>
     </div>
     <div class="text-center">
         <a href="{% url 'account_logout' %}" class="btn btn-pink">Logout</a>

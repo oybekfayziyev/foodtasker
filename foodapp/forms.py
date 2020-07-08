@@ -1,5 +1,5 @@
 from django import forms
-from .models import Restaurant, Profile
+from .models import Restaurant, Meal, Order
 from allauth.account.forms import LoginForm, SignupForm,ResetPasswordForm
 from django.contrib.auth.models import User
 
@@ -45,13 +45,13 @@ class UserForm(SignupForm):
         return user
 
 class AccountForm(forms.ModelForm):    
-    # first_name = forms.CharField(max_length = 30)
-    # last_name = forms.CharField(max_length=40)
-    # photo = forms.ImageField()
-    # phone = forms.CharField(max_length=30)
+
+    phone = forms.CharField(max_length=20)
+    photo = forms.ImageField()
+    
     class Meta:
-        model = Profile
-        fields = ['first_name','last_name','photo','phone']
+        model = User
+        fields = ['first_name','last_name','email','phone','photo']
 
 class RestaurantForm(forms.Form):
 
@@ -68,6 +68,14 @@ class RestaurantForm(forms.Form):
         'class' : 'input100'
     }))
     logo = forms.ImageField()
+
+class MealForm(forms.ModelForm):
+    class Meta:
+        model = Meal
+        fields = ['name','description','image','price']
+
+
+
 
     
     

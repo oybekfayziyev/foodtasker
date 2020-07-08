@@ -43,8 +43,19 @@
   </head>
 <body>    
     <div class="limiter">
-		<div class="container-login100" style="background-image: url('../../media/bg-01.jpg');">
+		<div class="container-login100" style="background-color: #3F3F63;">
 			<div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+
+				{% if messages %}
+					<div>
+					<strong>Messages:</strong>
+					<ul>
+						{% for message in messages %}
+						<li>{{message}}</li>
+						{% endfor %}
+					</ul>
+					</div>
+				{% endif %}   
 				{% block content %}
                 {% endblock content %}
 			</div>
